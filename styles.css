@@ -1,0 +1,146 @@
+body{
+    text-align: center;
+    background-color: #474973;
+    color: #F1DAC4;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+h1{
+    padding-bottom: 15px;
+    border-bottom: 2px solid #F1DAC4;
+}
+
+p{
+  font-size: 22px;  
+}
+
+#button-container{
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+}
+
+#scoreboard{
+    display: grid;
+    grid-template-columns: 27.5% 20% 5% 20% 27.5%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.player{
+    grid-column: 2;
+    margin: auto;
+}
+
+.computer{
+    grid-column: 4;
+    margin: auto;
+}
+
+.score-box{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    background-color: #C8963E;
+    width: 250px;
+    color: black;
+    border: 1px solid #6279B8;
+    border-radius: 5px;
+}
+
+.score{
+    display: flex;
+    background-color: #E3C567;
+    margin-top: 0;
+    margin-bottom: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+#message-container{
+    width: 400px;
+    margin: auto;
+}
+
+@keyframes win-animation {
+    0%   {background-color: #474973;}
+    50%  {background-color: green;}
+    100% {background-color: #474973;}
+}
+
+@keyframes lose-animation {
+    0%   {background-color: #474973;}
+    50%  {background-color: red;}
+    100% {background-color: #474973;}
+}
+
+@keyframes tie-animation {
+    0%   {background-color: #474973;}
+    50%  {background-color: orange;}
+    100% {background-color: #474973;}
+}
+
+
+.win{
+    animation-name: win-animation;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+}
+
+.lose{
+    animation-name: lose-animation;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+}
+
+.tie{
+    animation-name: tie-animation;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+}
+
+#game-message:empty{
+    border:none;
+}
+
+#game-message{
+    border: 2px solid #6279B8;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 50px;
+}
+
+button {
+    display: inline-block;
+    height: 150px;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    width: 150px;
+    border-radius: 50%;
+}
+
+button:focus{
+    outline: none;
+    border-color: blue;
+}
+
+img {
+    display: block;
+    margin: auto;
+    width: 100%;
+    height: auto;
+}
+
+.score-box div{
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+.center{
+    display: flex;
+    flex: center;
+}

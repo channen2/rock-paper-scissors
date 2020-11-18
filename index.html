@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1> Rock Paper Scissors</h1>
+
+  <div id="scoreboard">
+    <div class="player score-box">
+      <div class="center">
+        <p>Player</p>
+        <div><img id="player-image" src=""></div>
+      </div> 
+      <p id="player-score" class="score">0</p>
+    </div>
+    <div class="computer score-box">
+      <div class="center">
+        <p>Computer</p>
+        <div><img id="computer-image" src=""></div>
+      </div>
+      <p id="computer-score" class="score">0</p>
+    </div>
+  </div>
+
+  <div id="button-container"> 
+    <button value="rock"><img src="images/rock.png"></button> 
+    <button value="paper"><img src="images/paper.png"></button> 
+    <button value="scissors"><img src="images/scissors.png"></button> 
+  </div>
+
+  <div id="message-container">
+    <p id="game-message"></p>
+  </div>
+
+</body>
+
+<script>
+  /// Function declarations
+
+  function removeTransition(e){
+    e.target.classList.remove('win');
+    e.target.classList.remove('lose');
+    e.target.classList.remove('tie')
+  }
+
+  let replacePlayerImage = (img) => playerImg.src = `images/${img}.png`;
+  let replaceComputerImage = (img) => computerImg.src = `images/${img}.png`;
+
+  // Computer picks random action
+  function computerPlay(){
+    const options = ["rock", "paper", "scissors"];
+    return options[Math.floor(Math.random() * options.length)];
+  }
+
+  // winner
+  function updateScore(winner){
+    const pScore = document.getElementById('player-score');
+    const cScore = document.getElementById('computer-score');
+    if (winner==="player"){
+      playerScore += 1;
+      para.classList.add('win')
+    }
+    else if (winner==="computer"){
+      computerScore += 1;
+      para.classList.add('lose')
+    }
+    else{
+      para.classList.add('tie')
+    }
+    pScore.textContent = playerScore;
+    cScore.textContent = computerScore;
+  }
+
+  // Play a round of Rock, Paper, Scissors
+  function playRound(playerSelection, computerSelection){
+    
+    // Function that capitalizes the first letter of a string
+    let capitalize = (string) => string[0].toUpperCase() + string.slice(1);
+
+    const p = playerSelection;
+    const c = computerSelection;
+
+    replacePlayerImage(p);
+    replaceComputerImage(c);
+    
+    // Check for winner
+    playerWins = (p==="rock"&&c=="scissors")||(p==="scissors"&&c==="paper")||(p==="paper"&&c==="rock")
+    tie = p===c
+
+    let gameMessage, winner
+
+    // 0 == tie, 1 == playerWin, 2 == computerWin
+    if (tie){
+      gameMessage = `Tie! You both picked ${ capitalize(p) }!`;
+      winner = "tie";
+    }
+    else if (playerWins){
+      gameMessage = `You win! ${ capitalize(p) } beats ${ capitalize(c) }!`;
+      winner = "player";
+    }
+    else{
+      gameMessage = `You Lose! ${ capitalize(c) } beats ${ capitalize(p) }!`;
+      winner = "computer";
+    }
+    
+    para.textContent = gameMessage;
+    updateScore(winner);
+  }
+
+  /// Main game code
+  let playerScore = 0;
+  let computerScore = 0;
+
+  const buttons = document.querySelectorAll('button');
+  const para = document.getElementById('game-message');
+  const playerImg = document.getElementById('player-image');
+  const computerImg = document.getElementById('computer-image');
+
+  // eventListener for player input
+  Array.from(buttons).forEach(button => button.addEventListener('click', () => playRound(button.value, computerPlay())))
+  para.addEventListener('animationend', removeTransition);
+
+  
+  </script>
+</html>
